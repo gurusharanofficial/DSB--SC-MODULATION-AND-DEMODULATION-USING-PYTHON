@@ -28,8 +28,40 @@ __Procedure__:
 6) Coherent demodulation (multiply by synchronized carrier)
 7) Low-pass filter to recover message
 
-   __Tabulation__:
+__program__:
+```
+import numpy as np
+import matplotlib.pyplot as plt
+Am = 8.4;
+fm = 446;
+Ac = 16.8;
+fc = 4460;
+fs = 44600;
+t=np.arange(0,2/fm,1/fs)
+m = np.cos(2 * np.pi * fm * t)
+c=np.cos(2*np.pi*fc*t)
+s1 = (Ac + m) * np.cos(2 * np.pi * fc * t)
+s2 = (Ac - m) * np.cos(2 * np.pi * fc * t)
+s = s1 - s2
+s = m * c
+plt.subplot(3,1,1)
+plt.plot(t, m)
 
-   __Output__:
+plt.subplot(3,1,2)
+plt.plot(t,c)
+
+plt.subplot(3,1,3)
+plt.plot(t,s)
+```
+
+ __Tabulation__:
+ 
+<img width="1665" height="1657" alt="image" src="https://github.com/user-attachments/assets/75fe1e2f-ff8b-46f2-bb22-d7ab4af59d57" />
+
+ __Output__:
+
+<img width="1224" height="878" alt="Screenshot 2026-03-18 191558" src="https://github.com/user-attachments/assets/1a698d00-1f66-4a3f-896c-a7c502f0a808" />
 
    __Result__:
+
+   Thus the DSB-SC-AM Modulation is generated using python.
